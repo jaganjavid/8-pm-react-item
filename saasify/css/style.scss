@@ -1,0 +1,108 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+@mixin myFlex{
+    display: flex;
+}
+
+// Default Style
+
+h1, h2, h3, h4, h5, h6, p, ul{
+    margin: 0px;
+    padding: 0px;
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+body{
+    font-family: 'Inter', sans-serif;
+}
+
+
+// Shared Style
+
+.my-btn{
+    padding: 8px 20px;
+    border-radius: 30px;
+    display: inline-block;
+    font-weight: 600;
+}
+
+.my-white-btn{
+    background-color: #ffffff;
+    color: #111111 !important;
+}
+
+.my-gradiant-btn{
+    background:linear-gradient(145deg,#2272FF,#0D03C3);
+    color: #ffffff !important;
+}
+
+h1{
+    font-size: 71px;
+    font-weight: 600;
+}
+
+main{
+background: url("../img/banner/bg.svg") no-repeat center;
+// background:linear-gradient(145deg,#2272FF,#0D03C3);
+background-size: cover;
+height: 1181px;
+
+// Header
+header{
+    color: #ffffff;
+    padding: 15px 0px;
+    .header-wrapper{
+        @include myFlex();
+        justify-content: space-between;
+        align-items: center;
+        ul{
+            @include myFlex();
+            gap: 60px;
+            li {
+                a{
+                    color: #ffffff;
+                }
+            }
+        }
+    }
+}
+
+// Banner 
+.banner{
+    padding: 50px 0px;
+    >div{
+        >div{
+           div{
+            width: 80%;
+            margin: 0px auto;
+            position: relative;
+            border-radius: 15px;
+            input{
+                width: 100%;
+                padding: 15px 15px 15px 40px;
+                border-radius: 30px;
+                outline: none;
+            }
+            a{
+                position: absolute;
+                width: 150px;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 15px;
+            }
+           }
+        }
+    }
+}
+}

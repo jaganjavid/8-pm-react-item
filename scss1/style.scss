@@ -1,0 +1,62 @@
+@import "./var.scss";
+
+h1{
+    color: $color;
+}
+
+@mixin my-btn{
+    background-color: blue;
+    color: rgb(255, 255, 255);
+    padding: 10px 25px;
+}
+
+// nav{
+//     background-color: red;
+// }
+
+// nav ul {
+//     background-color: orange;
+//     width:60%;
+// }
+// nav ul li{
+//     background-color: aqua;
+//                 width: 40%;
+// }
+
+// nav ul li a{
+//     color: green;
+// }
+
+nav{
+    background-color: red;
+    ul{
+        background-color: orange;
+        width:60%;
+        li{
+            background-color: aqua;
+            width: 40%;
+            a{
+                color: green;
+            }
+        }
+    }
+}
+
+.btn-1{
+    @include my-btn();
+}
+.btn-2{
+    @include my-btn();
+    background-color: red;
+}
+
+.para1{
+    padding: 15px;
+    background-color: green;
+    color: #ffffff;
+}
+
+.para2{
+    @extend .para1;
+    background-color: orange;
+}

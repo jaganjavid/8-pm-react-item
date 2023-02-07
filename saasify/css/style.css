@@ -1,0 +1,88 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+.my-btn {
+  padding: 8px 20px;
+  border-radius: 30px;
+  display: inline-block;
+  font-weight: 600;
+}
+
+.my-white-btn {
+  background-color: #ffffff;
+  color: #111111 !important;
+}
+
+.my-gradiant-btn {
+  background: linear-gradient(145deg, #2272FF, #0D03C3);
+  color: #ffffff !important;
+}
+
+h1 {
+  font-size: 71px;
+  font-weight: 600;
+}
+
+main {
+  background: url("../img/banner/bg.svg") no-repeat center;
+  background-size: cover;
+  height: 1181px;
+}
+main header {
+  color: #ffffff;
+  padding: 15px 0px;
+}
+main header .header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+main header .header-wrapper ul {
+  display: flex;
+  gap: 60px;
+}
+main header .header-wrapper ul li a {
+  color: #ffffff;
+}
+main .banner {
+  padding: 50px 0px;
+}
+main .banner > div > div div {
+  width: 80%;
+  margin: 0px auto;
+  position: relative;
+  border-radius: 15px;
+}
+main .banner > div > div div input {
+  width: 100%;
+  padding: 15px 15px 15px 40px;
+  border-radius: 30px;
+  outline: none;
+}
+main .banner > div > div div a {
+  position: absolute;
+  width: 150px;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 15px;
+}/*# sourceMappingURL=style.css.map */
