@@ -15,6 +15,11 @@ h1, h2, h3, h4, h5, h6, p, ul{
     padding: 0px;
 }
 
+.container{
+    max-width: 1200px;
+    margin: 0px auto;
+}
+
 ul{
     list-style: none;
 }
@@ -52,6 +57,16 @@ h1{
     font-weight: 600;
 }
 
+h2{
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.client-logo,
+.services{
+    padding: 100px 0px;
+}
+
 main{
 background: url("../img/banner/bg.svg") no-repeat center;
 // background:linear-gradient(145deg,#2272FF,#0D03C3);
@@ -76,6 +91,11 @@ header{
             }
         }
     }
+    @media only screen and (max-width: 1000px) {
+       ul{
+        display: none !important;
+       }
+    }
 }
 
 // Banner 
@@ -84,7 +104,7 @@ header{
     >div{
         >div{
            div{
-            width: 80%;
+            width: 50%;
             margin: 0px auto;
             position: relative;
             border-radius: 15px;
@@ -105,4 +125,20 @@ header{
         }
     }
 }
+}
+
+
+// Client
+.client-logo{
+    padding-top: 150px;
+    >div{
+        >div{
+            div{
+                width: 100px;
+                img{
+                    width: 100%;
+                }
+            }
+        }
+    }
 }

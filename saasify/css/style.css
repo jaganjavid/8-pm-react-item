@@ -9,6 +9,11 @@ h1, h2, h3, h4, h5, h6, p, ul {
   padding: 0px;
 }
 
+.container {
+  max-width: 1200px;
+  margin: 0px auto;
+}
+
 ul {
   list-style: none;
 }
@@ -43,6 +48,16 @@ h1 {
   font-weight: 600;
 }
 
+h2 {
+  font-size: 50px;
+  font-weight: 700;
+}
+
+.client-logo,
+.services {
+  padding: 100px 0px;
+}
+
 main {
   background: url("../img/banner/bg.svg") no-repeat center;
   background-size: cover;
@@ -64,11 +79,16 @@ main header .header-wrapper ul {
 main header .header-wrapper ul li a {
   color: #ffffff;
 }
+@media only screen and (max-width: 1000px) {
+  main header ul {
+    display: none !important;
+  }
+}
 main .banner {
   padding: 50px 0px;
 }
 main .banner > div > div div {
-  width: 80%;
+  width: 50%;
   margin: 0px auto;
   position: relative;
   border-radius: 15px;
@@ -85,4 +105,14 @@ main .banner > div > div div a {
   top: 50%;
   transform: translateY(-50%);
   right: 15px;
+}
+
+.client-logo {
+  padding-top: 150px;
+}
+.client-logo > div > div div {
+  width: 100px;
+}
+.client-logo > div > div div img {
+  width: 100%;
 }/*# sourceMappingURL=style.css.map */
