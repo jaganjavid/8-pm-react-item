@@ -63,7 +63,8 @@ h2{
 }
 
 .client-logo,
-.services{
+.services,
+.smarter{
     padding: 100px 0px;
 }
 
@@ -138,6 +139,56 @@ header{
                 img{
                     width: 100%;
                 }
+            }
+        }
+    }
+}
+
+// Services
+.services{
+    >div{
+       >div:last-child{
+        >div{
+            div{
+               border-radius: 15px;
+               padding: 60px 0px;
+               box-shadow: 2px 2px 8px 2px #00000030;
+               &:hover{
+                box-shadow: 2px 2px 3px 2px #00000030;
+               }
+            }
+        }
+       }
+    }
+}
+
+
+// Smarter
+.smarter{
+    background-color: blue;
+    .smarter-box{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        color: #ffffff;
+        >span{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 46px;
+            background-color: #ffffff;
+            color: #0F0BC7;
+            width: 95px;
+            height: 70px;
+            text-align: center;
+            border-radius: 50%;
+        }
+        >div{
+            span{
+                font-size: 24px;
+            }
+            p{
+                font-size: 18px;
             }
         }
     }
