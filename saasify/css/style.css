@@ -53,9 +53,14 @@ h2 {
   font-weight: 700;
 }
 
+h4 {
+  font-size: 24px;
+}
+
 .client-logo,
 .services,
-.smarter {
+.smarter,
+.results {
   padding: 100px 0px;
 }
 
@@ -153,4 +158,62 @@ main .banner > div > div div a {
 }
 .smarter .smarter-box > div p {
   font-size: 18px;
+}
+
+.results .m-y {
+  padding: 10px;
+  background-color: #F6F5FF;
+  border-radius: 15px;
+  display: inline-block;
+  gap: 30px;
+  position: relative;
+  margin: 60px 0px 40px 0px;
+}
+.results .m-y div {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.results .m-y div span {
+  padding: 10px 15px;
+  color: #111111;
+  border-radius: 30px;
+  transition: 0.3s ease-in-out;
+}
+.results .m-y div span:first-child {
+  background: linear-gradient(145deg, #2272FF, #0D03C3);
+  color: #ffffff;
+}
+.results .m-y div span:last-child:hover {
+  background: linear-gradient(145deg, #2272FF, #0D03C3);
+  color: #ffffff;
+}
+.results .m-y img {
+  position: absolute;
+  top: -30px;
+  right: -75px;
+  width: 95px;
+}
+.results > div > div:nth-child(3) > div > div > div {
+  box-shadow: 0px 2px 20px 5px rgba(150, 150, 150, 0.168627451);
+  padding: 15px;
+  border-radius: 15px;
+}
+.results > div > div:nth-child(3) > div > div > div > div {
+  padding: 25px 0px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid grey;
+}
+.results > div > div:nth-child(3) > div > div > div > div > span {
+  display: block;
+}
+.results > div > div:nth-child(3) > div > div > div > div > span:first-of-type span {
+  font-size: 56px;
+  font-weight: 600;
+}
+.results > div ul {
+  height: 270px;
+}
+.results > div ul li {
+  margin-bottom: 25px;
 }/*# sourceMappingURL=style.css.map */
