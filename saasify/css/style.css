@@ -199,6 +199,17 @@ main .banner > div > div div a {
   padding: 15px;
   border-radius: 15px;
 }
+.results > div > div:nth-child(3) > div > div > div:hover {
+  background: linear-gradient(#2272FF, #0D03C3);
+  color: #ffffff;
+}
+.results > div > div:nth-child(3) > div > div > div:hover ul li .tick {
+  background: url("../img/results/white.svg") center no-repeat;
+}
+.results > div > div:nth-child(3) > div > div > div:hover .box-btn a {
+  background: #ffffff;
+  color: #333333;
+}
 .results > div > div:nth-child(3) > div > div > div > div {
   padding: 25px 0px;
   margin-bottom: 25px;
@@ -216,4 +227,26 @@ main .banner > div > div div a {
 }
 .results > div ul li {
   margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.results > div ul li .tick {
+  width: 20px;
+  height: 20px;
+  background: url("../img/results/blue.svg") center no-repeat;
+  background-size: cover;
+}
+.results > div .box-btn {
+  text-align: center;
+}
+.results > div .box-btn a {
+  background: linear-gradient(#2272FF, #0D03C3);
+  padding: 15px 50px;
+  color: #ffffff;
+  border-radius: 30px;
+}
+
+.people > div > div:last-child > div > div {
+  border-radius: 30px;
 }/*# sourceMappingURL=style.css.map */

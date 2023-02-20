@@ -242,11 +242,27 @@ header{
        >div:nth-child(3){
         >div{
            >div{
-
             >div{
                box-shadow: 0px 2px 20px 5px #9696962b;
                padding: 15px;
                border-radius: 15px;
+               &:hover{
+                background: linear-gradient(#2272FF,#0D03C3);
+                color: #ffffff;
+                ul{
+                    li{
+                        .tick{
+                            background:url("../img/results/white.svg") center no-repeat;
+                        }
+                    }
+                }
+                .box-btn{
+                    a{
+                        background: #ffffff;
+                        color: #333333;
+                    }
+                }
+               }
                 >div{
                     padding: 25px 0px;
                     margin-bottom: 25px;
@@ -270,6 +286,38 @@ header{
         height: 270px;
         li{
             margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            .tick{
+                width: 20px;
+                height: 20px;
+                background:url("../img/results/blue.svg") center no-repeat;
+                background-size: cover;
+            }
+        }
+       }
+       .box-btn {
+        text-align: center;
+         a{
+            background: linear-gradient(#2272FF,#0D03C3);
+            padding: 15px 50px;
+            color: #ffffff;
+            border-radius: 30px;
+         }
+       }
+    }
+}
+
+// People
+
+.people{
+    >div{
+       >div:last-child{
+        >div{
+            >div{
+                border-radius: 30px;
+            }
         }
        }
     }
