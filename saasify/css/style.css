@@ -43,6 +43,10 @@ body {
   color: #ffffff !important;
 }
 
+.my-text-btn {
+  color: #0F0BC7 !important;
+}
+
 h1 {
   font-size: 71px;
   font-weight: 600;
@@ -60,7 +64,10 @@ h4 {
 .client-logo,
 .services,
 .smarter,
-.results {
+.results,
+.people,
+.business,
+footer {
   padding: 100px 0px;
 }
 
@@ -249,4 +256,58 @@ main .banner > div > div div a {
 
 .people > div > div:last-child > div > div {
   border-radius: 30px;
+}
+
+.business {
+  background-color: #040335;
+}
+
+footer {
+  background-color: #040335;
+  color: #ffffff;
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+}
+footer h4 {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+footer ul li {
+  margin-bottom: 15px;
+}
+footer ul li a {
+  color: #c4c4c4;
+}
+footer ul li a:hover {
+  color: orangered;
+}
+@media only screen and (max-width: 1000px) {
+  footer a {
+    font-size: 14px;
+  }
+}
+
+.copywrite {
+  background-color: #040335;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px 0px;
+}
+
+@media only screen and (max-width: 576px) {
+  h1 {
+    font-size: 50px;
+  }
+  h2 {
+    font-size: 35px;
+  }
+  .smarter .smarter-box > span {
+    font-size: 25px;
+    height: 50px;
+  }
+}
+@media only screen and (max-width: 992px) {
+  main .banner > div > div div {
+    width: 100%;
+  }
 }/*# sourceMappingURL=style.css.map */
