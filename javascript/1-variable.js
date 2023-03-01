@@ -21,6 +21,24 @@ var firstname = "Jagan"; // normal case
 var firstName = "camel case"; // ***
 var first_name = "Underscore" 
 var FirstName = "Pascal Case";
-var $firstName = "Jagan"; 
+var $firstName = "Dollar"; 
 
-console.log($firstName);
+
+// Let 
+let newName = "John";
+newName = "Doe";
+
+let test;
+
+// Const 
+
+const anotherName = "Jack";
+
+// Can not reassign
+// anotherName = "John";
+
+// Have to assign a value
+// const myName;
+
+
+console.log(myName);
