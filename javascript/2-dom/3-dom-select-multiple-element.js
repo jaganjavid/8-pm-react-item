@@ -20,7 +20,7 @@ lists.forEach(function(element, index){
 
 // document.querySelectorAll();
 
-const items2 = document.querySelectorAll("li");
+const items2 = document.querySelectorAll("li"); // NODELIST
 
 items2.forEach(function(element, index){
     console.log(element.style.color = "brown");
