@@ -52,3 +52,21 @@ val = listItem.nextSibling;
 val = listItem.nextElementSibling;
 
 console.log(val);
+
+
+
+
+// greet();
+// function greet(){
+//     console.log("Hi");
+// }
+
+// greet();
+
+// greet();
+
+var greet = function(){
+    console.log("Hi");
+}
+
+greet();
