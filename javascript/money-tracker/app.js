@@ -28,6 +28,27 @@ const ItemCtrl = (function(){
     return {
         getItems: function(){
             return data.items;
+        },
+        addItem: function(name, money){
+          let ID;
+
+            //   Create ID 
+            if(data.items.length > 0){
+                ID = data.items[data.items.length - 1].id + 1;
+            } else {
+                ID = 0;
+            }
+
+            money = parseInt(money);
+
+            // Create a new Item
+            newItem = new Item(ID, name, money);
+
+            // Add to item array
+            data.items.push(newItem);
+
+            return newItem;
+
         }
     }
 })();
@@ -57,6 +78,33 @@ const UICtrl = (function(){
            document.querySelector(".update-btn").style.display = "none";
            document.querySelector(".delete-btn").style.display = "none";
            document.querySelector(".back-btn").style.display = "none";
+        },
+        getItemInput: function(){
+            return {
+                name: document.querySelector("#item-name").value,
+                money: document.querySelector("#item-money").value
+            }
+        },
+        addListItem: function(item){
+            
+            // Create a li ELement
+            const li = document.createElement("li");
+
+            // Add Class to li
+            li.className = "collection-item";
+
+            // Add ID
+            li.id = `item-${item.id}`;
+
+            // Add HTML
+            li.innerHTML = `<strong>${item.name}:</strong> <em>${item.money}$</em>
+            <a href="#" class="secondary-content">
+                <i class="fa fa-pencil edit-item"></i>
+            </a>`;
+
+            // Insert ITem
+            document.querySelector(".collection").appendChild(li);
+
         }
      }
 })()
@@ -65,6 +113,34 @@ const UICtrl = (function(){
 // APP CONTROLLER
 
 const App = (function(ItemCtrl, UICtrl){
+
+
+    const loadEventListeners = function(){
+        
+        // Add item event
+        document.querySelector(".add-btn").addEventListener("click", itemAddSubmit);
+
+    }
+
+    function itemAddSubmit(e){
+        e.preventDefault();
+
+        // Get from inout from ui controller
+
+        const input = UICtrl.getItemInput();
+
+        if(input.name !== "" && input.money !== ""){
+            // Add Item
+
+            const newItem = ItemCtrl.addItem(input.name, input.money);
+
+            // Add Item to UI List
+            UICtrl.addListItem(newItem);
+
+        }
+    }
+
+
     return {
         init:function(){
 
@@ -72,7 +148,15 @@ const App = (function(ItemCtrl, UICtrl){
 
             const items = ItemCtrl.getItems();
 
-            UICtrl.populateItemList(items);
+            if(items.length > 0){
+                UICtrl.populateItemList(items);
+                document.querySelector(".no-item").style.display = "none";
+            } else{
+                document.querySelector(".no-item").style.display = "block";
+            }
+
+            loadEventListeners();
+           
         }
     }
 })(ItemCtrl, UICtrl)
