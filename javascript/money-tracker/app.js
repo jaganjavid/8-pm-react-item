@@ -49,7 +49,40 @@ const ItemCtrl = (function(){
 
             return newItem;
 
+        },
+        getTotalMoney: function(){
+            let total = 0;
+
+            if(data.items.length > 0){
+                data.items.forEach(function(item){
+                   total += item.money;
+
+                   data.totalMoney = total;
+                })
+                return data.totalMoney;
+            } else {
+                return data.totalMoney = 0;
+            }
+        },
+        getItemById: function(id){
+            let found = null;
+
+            // Loop through the items
+            data.items.forEach(function(item){
+              if(item.id === id){
+                found = item;
+              }
+            })
+
+            return found;
+        },
+        setCurrentItem : function(item){
+            data.currentItem = item;
+        },
+        getCurrentItem: function(){
+            return data.currentItem;
         }
+        
     }
 })();
 
@@ -105,6 +138,23 @@ const UICtrl = (function(){
             // Insert ITem
             document.querySelector(".collection").appendChild(li);
 
+        },
+        clearInput: function(){
+            document.querySelector("#item-name").value = "";
+            document.querySelector("#item-money").value = "";
+        },
+        showTotalMoney: function(money){
+           document.querySelector(".total-money").textContent = money;
+        },
+        addItemToform: function(){
+            document.querySelector("#item-name").value = ItemCtrl.getCurrentItem().name;
+            document.querySelector("#item-money").value = ItemCtrl.getCurrentItem().money;
+        },
+        showEditState: function(){
+            document.querySelector(".add-btn").style.display = "none";
+            document.querySelector(".update-btn").style.display = "inline";
+            document.querySelector(".delete-btn").style.display = "inline";
+            document.querySelector(".back-btn").style.display = "inline";
         }
      }
 })()
@@ -120,6 +170,9 @@ const App = (function(ItemCtrl, UICtrl){
         // Add item event
         document.querySelector(".add-btn").addEventListener("click", itemAddSubmit);
 
+        // Edit Item Event
+        document.querySelector(".collection").addEventListener("click", itemEditClick);
+
     }
 
     function itemAddSubmit(e){
@@ -129,15 +182,47 @@ const App = (function(ItemCtrl, UICtrl){
 
         const input = UICtrl.getItemInput();
 
-        if(input.name !== "" && input.money !== ""){
-            // Add Item
+        if(input.name === "" || input.money === ""){
+          alert("Please fill the fields")
+        } else {
+             // Add Item
+             const newItem = ItemCtrl.addItem(input.name, input.money);
 
-            const newItem = ItemCtrl.addItem(input.name, input.money);
+             // Add Item to UI List
+             UICtrl.addListItem(newItem);
 
-            // Add Item to UI List
-            UICtrl.addListItem(newItem);
+            //  Get Input Money
+            const totalMoney = ItemCtrl.getTotalMoney();
 
+            // Update money to ui
+            UICtrl.showTotalMoney(totalMoney);
+
+             // Clear Input 
+             UICtrl.clearInput();
         }
+    }
+
+
+    const itemEditClick = function(e){
+        const listId = e.target.parentElement.parentElement.id;
+
+        // Break into an array
+        const listArr = listId.split("-");
+
+        // Get the actual ID
+        const id = parseInt(listArr[1]);
+
+        // Get item
+        const itemToEdit = ItemCtrl.getItemById(id);
+
+        // Set Current Item
+        ItemCtrl.setCurrentItem(itemToEdit);
+
+        // Add item to form
+        UICtrl.addItemToform();
+
+        UICtrl.showEditState();
+     
     }
 
 
