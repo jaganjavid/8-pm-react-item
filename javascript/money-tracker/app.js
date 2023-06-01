@@ -81,6 +81,22 @@ const ItemCtrl = (function(){
         },
         getCurrentItem: function(){
             return data.currentItem;
+        },
+        updateItem: function(name, money){
+            
+            money = parseInt(money);
+
+            let found = null;
+
+            data.items.forEach(function(item){
+                if(item.id === data.currentItem.id){
+                    item.name = name;
+                    item.money = money;
+                    found = item;
+                }
+            })
+
+            return found;
         }
         
     }
@@ -155,7 +171,22 @@ const UICtrl = (function(){
             document.querySelector(".update-btn").style.display = "inline";
             document.querySelector(".delete-btn").style.display = "inline";
             document.querySelector(".back-btn").style.display = "inline";
-        }
+        },
+        updateListItem: function(item){
+          const listItems = document.querySelectorAll(".collection-item");
+
+          listItems.forEach(function(listItem){
+            const itemID = listItem.getAttribute("id");
+
+            if(itemID === `item-${item.id}`){
+                document.querySelector(`#${itemID}`).innerHTML = `
+                <strong>${item.name}:</strong> <em>${item.money}$</em>
+                <a href="#" class="secondary-content">
+                    <i class="fa fa-pencil edit-item"></i>
+                </a>`
+            }
+          })
+        } 
      }
 })()
 
@@ -172,6 +203,9 @@ const App = (function(ItemCtrl, UICtrl){
 
         // Edit Item Event
         document.querySelector(".collection").addEventListener("click", itemEditClick);
+
+        // Update item submit
+        document.querySelector(".update-btn").addEventListener("click", itemUpdateSubmit);
 
     }
 
@@ -204,26 +238,54 @@ const App = (function(ItemCtrl, UICtrl){
 
 
     const itemEditClick = function(e){
-        const listId = e.target.parentElement.parentElement.id;
+        
+        if(e.target.classList.contains("edit-item")){
+            const listId = e.target.parentElement.parentElement.id;
 
-        // Break into an array
-        const listArr = listId.split("-");
+            // Break into an array
+            const listArr = listId.split("-");
 
-        // Get the actual ID
-        const id = parseInt(listArr[1]);
+            // Get the actual ID
+            const id = parseInt(listArr[1]);
 
-        // Get item
-        const itemToEdit = ItemCtrl.getItemById(id);
+            // Get item
+            const itemToEdit = ItemCtrl.getItemById(id);
 
-        // Set Current Item
-        ItemCtrl.setCurrentItem(itemToEdit);
+            // Set Current Item
+            ItemCtrl.setCurrentItem(itemToEdit);
 
-        // Add item to form
-        UICtrl.addItemToform();
+            // Add item to form
+            UICtrl.addItemToform();
 
-        UICtrl.showEditState();
+            UICtrl.showEditState();
+        }
      
     }
+
+    const itemUpdateSubmit = function(e){
+        e.preventDefault();
+        
+        // Get item input
+        const input = UICtrl.getItemInput();
+
+        // Update Item
+        const updateItem = ItemCtrl.updateItem(input.name, input.money);
+
+        // Update UI
+        UICtrl.updateListItem(updateItem);
+
+         //  Get Input Money
+         const totalMoney = ItemCtrl.getTotalMoney();
+
+         // Update money to ui
+         UICtrl.showTotalMoney(totalMoney);
+
+           // Clear Input 
+           UICtrl.clearInput();
+
+        
+    }
+
 
 
     return {
@@ -235,6 +297,11 @@ const App = (function(ItemCtrl, UICtrl){
 
             if(items.length > 0){
                 UICtrl.populateItemList(items);
+                //  Get Input Money
+                const totalMoney = ItemCtrl.getTotalMoney();
+
+                // Update money to ui
+                UICtrl.showTotalMoney(totalMoney);
                 document.querySelector(".no-item").style.display = "none";
             } else{
                 document.querySelector(".no-item").style.display = "block";
