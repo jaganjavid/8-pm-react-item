@@ -97,6 +97,19 @@ const ItemCtrl = (function(){
             })
 
             return found;
+        },
+        deleteItem: function(id){
+            const ids = data.items.map(function(item){
+                return item.id;
+            })
+
+            // Get Index
+            const index = ids.indexOf(id);
+
+            data.items.splice(index, 1);
+        },
+        clearAllItems: function(){
+            data.items = [];
         }
         
     }
@@ -186,7 +199,19 @@ const UICtrl = (function(){
                 </a>`
             }
           })
-        } 
+        },
+        deleteListItem: function(id){
+            const itemID = `#item-${id}`;
+            const item = document.querySelector(itemID);
+            item.remove();
+        },
+        clearAllItems: function(){
+            let listItems = document.querySelectorAll(".collection-item");
+
+            listItems.forEach(function(item){
+                item.remove();
+            })
+        }
      }
 })()
 
@@ -206,6 +231,19 @@ const App = (function(ItemCtrl, UICtrl){
 
         // Update item submit
         document.querySelector(".update-btn").addEventListener("click", itemUpdateSubmit);
+
+        // Delete item event
+        document.querySelector(".delete-btn").addEventListener("click", itemDeleteSubmit);
+
+        // Back button event
+        document.querySelector(".back-btn").addEventListener("click", function(e){
+            e.preventDefault();
+            UICtrl.clearEditState();
+            UICtrl.clearInput();
+        })
+
+        // Clear items event
+        document.querySelector(".clear-btn").addEventListener("click", clearAllItemsClick)
 
     }
 
@@ -233,6 +271,8 @@ const App = (function(ItemCtrl, UICtrl){
 
              // Clear Input 
              UICtrl.clearInput();
+
+             document.querySelector(".no-item").style.display = "none";
         }
     }
 
@@ -277,16 +317,60 @@ const App = (function(ItemCtrl, UICtrl){
          //  Get Input Money
          const totalMoney = ItemCtrl.getTotalMoney();
 
-         // Update money to ui
-         UICtrl.showTotalMoney(totalMoney);
+        // Update money to ui
+        UICtrl.showTotalMoney(totalMoney);
 
-           // Clear Input 
-           UICtrl.clearInput();
+        UICtrl.clearEditState();
+        // Clear Input 
+        UICtrl.clearInput();
 
         
     }
 
 
+    const itemDeleteSubmit = function(e){
+        e.preventDefault();
+
+        // Get Current Item
+        const currentItem = ItemCtrl.getCurrentItem();
+
+        // Delete from data structure
+        ItemCtrl.deleteItem(currentItem.id);
+
+        // Delete from ui
+        UICtrl.deleteListItem(currentItem.id);
+
+        //  Get Input Money
+        const totalMoney = ItemCtrl.getTotalMoney();
+
+        // Update money to ui
+        UICtrl.showTotalMoney(totalMoney);
+
+        UICtrl.clearEditState();
+        // Clear Input 
+        UICtrl.clearInput();
+        
+        if(ItemCtrl.getItems().length === 0){
+            document.querySelector(".no-item").style.display = "block";
+        }
+    }
+
+
+    const clearAllItemsClick = function(e){
+        e.preventDefault();
+
+        ItemCtrl.clearAllItems();
+
+        UICtrl.clearAllItems();
+
+        //  Get Input Money
+        const totalMoney = ItemCtrl.getTotalMoney();
+
+        // Update money to ui
+        UICtrl.showTotalMoney(totalMoney);
+
+        document.querySelector(".no-item").style.display = "block";
+    }
 
     return {
         init:function(){
