@@ -1,6 +1,72 @@
 
 // STORE CONTROLLER
 
+const StorageCtrl = (function(){
+    return{
+       
+        getItem : function(){
+            let items;
+
+            // check if any item in array
+
+            if(localStorage.getItem("items") === null){
+                items = [];
+            } else {
+                // Get the existing data from ls
+                items = JSON.parse(localStorage.getItem("items"));
+            }
+
+            return items;
+        },
+        storeItem: function(item){
+            let items;
+
+            // CHeck if any items in array
+
+            if(localStorage.getItem("items") === null){
+                items = [];
+
+                // Push new item
+                items.push(item);
+            }else {
+                // Get the existing data from ls
+                items = JSON.parse(localStorage.getItem("items"));
+                 // Push new item
+                 items.push(item);
+            }
+
+            // SET LS
+            localStorage.setItem("items", JSON.stringify(items));
+        },
+        updateItemLS: function(updatedItem){
+          let items = JSON.parse(localStorage.getItem("items"));
+
+          items.forEach(function(item, index){
+            if(updatedItem.id === item.id){
+                items.splice(index, 1, updatedItem);
+            }
+          })
+
+           // SET LS
+           localStorage.setItem("items", JSON.stringify(items));
+        }, 
+        deleteItemLs: function(id){
+            let items = JSON.parse(localStorage.getItem("items"));
+
+            items.forEach(function(item, index){
+                if(id === item.id){
+                    items.splice(index, 1);
+                }
+            })
+
+            // SET LS
+           localStorage.setItem("items", JSON.stringify(items));
+        }
+    }
+})()
+
+
+
 
 
 // ITEM CONTROLLER
@@ -16,11 +82,12 @@ const ItemCtrl = (function(){
 
     // DATA STRUCTURE / STATE
     const data = {
-        items: [
-            {id: 0, name:"Food", money: 1000},
-            {id: 1, name:"Transport", money: 3000},
-            {id: 2, name:"Clothes", money: 500},
-        ],
+        // items: [
+        //     {id: 0, name:"Food", money: 1000},
+        //     {id: 1, name:"Transport", money: 3000},
+        //     {id: 2, name:"Clothes", money: 500},
+        // ],
+        items: StorageCtrl.getItem(),
         currentItem: null,
         totalMoney: 0
     }
@@ -211,6 +278,8 @@ const UICtrl = (function(){
             listItems.forEach(function(item){
                 item.remove();
             })
+
+            localStorage.removeItem("items");
         }
      }
 })()
@@ -218,7 +287,7 @@ const UICtrl = (function(){
 
 // APP CONTROLLER
 
-const App = (function(ItemCtrl, UICtrl){
+const App = (function(ItemCtrl, UICtrl, StorageCtrl){
 
 
     const loadEventListeners = function(){
@@ -268,6 +337,8 @@ const App = (function(ItemCtrl, UICtrl){
 
             // Update money to ui
             UICtrl.showTotalMoney(totalMoney);
+
+            StorageCtrl.storeItem(newItem);
 
              // Clear Input 
              UICtrl.clearInput();
@@ -320,6 +391,8 @@ const App = (function(ItemCtrl, UICtrl){
         // Update money to ui
         UICtrl.showTotalMoney(totalMoney);
 
+        StorageCtrl.updateItemLS(updateItem);
+
         UICtrl.clearEditState();
         // Clear Input 
         UICtrl.clearInput();
@@ -339,6 +412,9 @@ const App = (function(ItemCtrl, UICtrl){
 
         // Delete from ui
         UICtrl.deleteListItem(currentItem.id);
+
+        // DELETE FROM LS
+        StorageCtrl.deleteItemLs(currentItem.id);
 
         //  Get Input Money
         const totalMoney = ItemCtrl.getTotalMoney();
@@ -395,7 +471,7 @@ const App = (function(ItemCtrl, UICtrl){
            
         }
     }
-})(ItemCtrl, UICtrl)
+})(ItemCtrl, UICtrl, StorageCtrl)
 
 App.init();
 
